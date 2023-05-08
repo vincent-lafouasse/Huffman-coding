@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static FrequencyMap* new_frequency_map(void);
+static void add_occurence(FrequencyMap* frequency_map, char c);
+
 FrequencyMap* frequency_map_from_string(const char* input) {
   FrequencyMap* new = new_frequency_map();
 
@@ -13,17 +16,7 @@ FrequencyMap* frequency_map_from_string(const char* input) {
   return new;
 }
 
-FrequencyMap* new_frequency_map(void) {
-  FrequencyMap* new = malloc(sizeof(FrequencyMap));
-  new->len = 0;
-  for (int i = 0; i < N_MAX_SYMBOLS; i++) {
-    new->map[i].symbol = 0;
-    new->map[i].count = -1;
-  }
-  return new;
-}
-
-void add_occurence(FrequencyMap* frequency_map, char c) {
+static void add_occurence(FrequencyMap* frequency_map, char c) {
   for (int i = 0; i < frequency_map->len; i++) {
     if (frequency_map->map[i].symbol == c) {
       frequency_map->map[i].count++;
@@ -34,6 +27,16 @@ void add_occurence(FrequencyMap* frequency_map, char c) {
   frequency_map->map[len].symbol = c;
   frequency_map->map[len].count = 1;
   frequency_map->len++;
+}
+
+static FrequencyMap* new_frequency_map(void) {
+  FrequencyMap* new = malloc(sizeof(FrequencyMap));
+  new->len = 0;
+  for (int i = 0; i < N_MAX_SYMBOLS; i++) {
+    new->map[i].symbol = 0;
+    new->map[i].count = -1;
+  }
+  return new;
 }
 
 void print_frequency_map(FrequencyMap* frequency_map) {
