@@ -8,7 +8,7 @@
 #define BUFFER_SIZE 256
 
 int main(int argc, char* argv[]) {
-  char* input = malloc(BUFFER_SIZE);
+  char input[BUFFER_SIZE];
   if (argc == 1) {
     strcpy(input, "420 lol bjr,,,");
   } else {
