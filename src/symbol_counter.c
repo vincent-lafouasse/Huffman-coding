@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+FrequencyMap* frequency_map_from_string(const char* input) {
+  FrequencyMap* new = new_frequency_map();
+
+  while (*input != '\0') {
+    add_occurence(new, *input);
+    input++;
+  }
+  return new;
+}
+
 FrequencyMap* new_frequency_map(void) {
   FrequencyMap* new = malloc(sizeof(FrequencyMap));
   new->len = 0;
@@ -39,5 +49,6 @@ void print_frequency_map(FrequencyMap* frequency_map) {
 }
 
 void print_symbol_count(SymbolCount symbol_count) {
-  printf("Symbol: %c \t Count: %i\n", symbol_count.symbol, symbol_count.count);
+  printf("Symbol: '%c' \t Count: %i\n", symbol_count.symbol,
+         symbol_count.count);
 }
