@@ -1,11 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "btree.h"
 #include "symbol_counter.h"
 
-int main(void) {
-  const char* input = "420 lol bjr,,,";
+#define BUFFER_SIZE 256
+
+int main(int argc, char* argv[]) {
+  char* input = malloc(BUFFER_SIZE);
+  if (argc == 1) {
+    strcpy(input, "420 lol bjr,,,");
+  } else {
+    strcpy(input, argv[1]);
+  }
   printf("Input: %s\n", input);
   FrequencyMap* frequency_map = frequency_map_from_string(input);
   print_frequency_map(frequency_map);
