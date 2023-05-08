@@ -14,8 +14,10 @@ Node* new_node(char symbol, double weight) {
 }
 
 void print_node(Node* node) {
-  printf("Node %c:\n", node->symbol);
-  printf("\tWeight %f:\n", node->weight);
-  printf("\tLeft %p:\n", (void*)node->left);
-  printf("\tRight %p:\n", (void*)node->right);
+  printf("Node %c\n", node->symbol);
+  printf("\tWeight %f\n", node->weight);
+  printf("\tAdress %p\n", (void*)node);
+  printf("\tLeft %p\n", (void*)node->left);
+  printf("\tRight %p\n", (void*)node->right);
+  printf("\tParent %p\n", (void*)node->parent);
 }
