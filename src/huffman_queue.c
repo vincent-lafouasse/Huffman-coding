@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void push(PriorityQueue* queue, Node* node);
 static void swap(Node** node1, Node** node2);
+static void normalize_queue(PriorityQueue* queue);
 
 PriorityQueue* new_queue_from_frequency_map(FrequencyMap* frequency_map) {
   PriorityQueue* queue = new_queue();
@@ -22,6 +22,19 @@ void emplace_into_queue(char symbol, int count, PriorityQueue* queue) {
 
 void insert_into_queue(Node* node, PriorityQueue* queue) {
   push(queue, node);
+  normalize_queue(queue);
+}
+
+Node* pop(PriorityQueue* queue) {
+  if (queue->len == 0) {
+    printf("Queue is empty, cannot pop\n");
+    exit(1);
+  }
+  (queue->len)--;
+  return queue->elements[queue->len - 1];
+}
+
+static void normalize_queue(PriorityQueue* queue) {
   int min_count = -1;
   int min_arg;
   for (int i = 0; i < queue->len; i++) {
@@ -31,7 +44,9 @@ void insert_into_queue(Node* node, PriorityQueue* queue) {
       min_arg = i;
     }
   }
-  swap(&(queue->elements[queue->len - 1]), &(queue->elements[min_arg]));
+  if (min_arg != queue->len - 1) {
+    swap(&(queue->elements[queue->len - 1]), &(queue->elements[min_arg]));
+  }
 }
 
 static void swap(Node** node1, Node** node2) {
@@ -40,7 +55,7 @@ static void swap(Node** node1, Node** node2) {
   *node2 = temp;
 }
 
-static void push(PriorityQueue* queue, Node* node) {
+void push(PriorityQueue* queue, Node* node) {
   if (queue->len == N_MAX_SYMBOLS) {
     printf("Queue is full, cannot insert/push elements\n");
     exit(1);

@@ -19,6 +19,7 @@ void insert_into_queue(Node* node, PriorityQueue* queue);
 void emplace_into_queue(char symbol, int count, PriorityQueue* queue);
 
 Node* pop(PriorityQueue* queue);
+void push(PriorityQueue* queue, Node* node);
 
 bool queue_is_empty(PriorityQueue* queue);
 void print_queue(PriorityQueue* queue);
