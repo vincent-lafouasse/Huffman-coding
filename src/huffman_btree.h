@@ -6,7 +6,6 @@ typedef struct Node {
   struct Node* left;
   struct Node* right;
   struct Node* parent;
-
 } Node;
 
 Node* new_node(char symbol, int count);
