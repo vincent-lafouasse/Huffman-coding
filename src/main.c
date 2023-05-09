@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "btree.h"
+#include "huffman_queue.h"
 #include "symbol_counter.h"
 
 #define BUFFER_SIZE 256
