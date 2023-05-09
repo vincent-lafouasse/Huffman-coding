@@ -14,10 +14,10 @@ Node* new_node(char symbol, int count) {
 }
 
 void print_node(Node* node) {
-  printf("Node %c\t", node->symbol);
-  printf("\tAdress %p", (void*)node);
-  printf("\tParent %p\n", (void*)node->parent);
-  printf("Count %d", node->count);
-  printf("\tLeft %p", (void*)node->left);
+  printf("Node '%c'\t", node->symbol);
+  printf("%d\n", node->count);
+  printf("Adress %p", (void*)node);
+  printf("\tParent %p", (void*)node->parent);
+  printf("\t\tLeft %p", (void*)node->left);
   printf("\tRight %p\n", (void*)node->right);
 }
