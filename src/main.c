@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "frequency_map.h"
 #include "huffman_btree.h"
 #include "huffman_queue.h"
-#include "symbol_counter.h"
 
 #define BUFFER_SIZE 256
 
@@ -16,15 +16,17 @@ int main(int argc, char* argv[]) {
   } else {
     strcpy(input, argv[1]);
   }
-  printf("Input: %s\n", input);
+  // printf("Input: %s\n", input);
 
   // create frequency map
   FrequencyMap* frequency_map = frequency_map_from_string(input);
-  print_frequency_map(frequency_map);
+  // print_frequency_map(frequency_map);
 
   // frequency map to priority queue
   PriorityQueue* queue = new_queue();
   print_queue(queue);
+  Node* node = new_node('a', 42);
+  print_node(node);
 
   // priority queue to binary tree
   //

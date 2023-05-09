@@ -1,4 +1,4 @@
-#include "symbol_counter.h"
+#include "frequency_map.h"
 
 #include <stdio.h>
 #include <stdlib.h>
