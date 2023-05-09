@@ -2,12 +2,12 @@
 
 typedef struct Node {
   char symbol;
-  double weight;
+  int count;
   struct Node* left;
   struct Node* right;
   struct Node* parent;
 
 } Node;
 
-Node* new_node(char symbol, double weight);
+Node* new_node(char symbol, int count);
 void print_node(Node* node);
