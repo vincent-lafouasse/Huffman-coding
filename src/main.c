@@ -24,9 +24,15 @@ int main(int argc, char* argv[]) {
 
   // frequency map to priority queue
   PriorityQueue* queue = new_queue();
-  print_queue(queue);
   Node* node = new_node('a', 42);
-  print_node(node);
+  insert_into_queue(node, queue);
+  print_queue(queue);
+  Node* node1 = new_node('b', 0);
+  insert_into_queue(node1, queue);
+  print_queue(queue);
+  Node* node2 = new_node('c', 69);
+  insert_into_queue(node2, queue);
+  print_queue(queue);
 
   // priority queue to binary tree
   //
@@ -35,5 +41,8 @@ int main(int argc, char* argv[]) {
   //
 
   free(queue);
+  free(node);
+  free(node1);
+  free(node2);
   free(frequency_map);
 }
