@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 
-#include "btree.h"
+#include "huffman_btree.h"
 #include "symbol_counter.h"
 
 #define N_MAX_SYMBOLS 128

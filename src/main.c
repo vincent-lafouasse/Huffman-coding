@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "btree.h"
+#include "huffman_btree.h"
 #include "huffman_queue.h"
 #include "symbol_counter.h"
 
