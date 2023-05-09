@@ -6,13 +6,18 @@
 static void push(PriorityQueue* queue, Node* node);
 static void swap(Node** node1, Node** node2);
 
-PriorityQueue* new_queue(void) {
-  PriorityQueue* new = malloc(sizeof(PriorityQueue));
-  for (int i = 0; i < N_MAX_SYMBOLS; i++) {
-    new->elements[i] = NULL;
+PriorityQueue* new_queue_from_frequency_map(FrequencyMap* frequency_map) {
+  PriorityQueue* queue = new_queue();
+  for (int i = 0; i < frequency_map->len; i++) {
+    SymbolCount current = frequency_map->map[i];
+    emplace_into_queue(current.symbol, current.count, queue);
   }
-  new->len = 0;
-  return new;
+  return queue;
+}
+
+void emplace_into_queue(char symbol, int count, PriorityQueue* queue) {
+  Node* new = new_node(symbol, count);
+  insert_into_queue(new, queue);
 }
 
 void insert_into_queue(Node* node, PriorityQueue* queue) {
@@ -42,6 +47,15 @@ static void push(PriorityQueue* queue, Node* node) {
   }
   queue->elements[queue->len] = node;
   (queue->len)++;
+}
+
+PriorityQueue* new_queue(void) {
+  PriorityQueue* new = malloc(sizeof(PriorityQueue));
+  for (int i = 0; i < N_MAX_SYMBOLS; i++) {
+    new->elements[i] = NULL;
+  }
+  new->len = 0;
+  return new;
 }
 
 bool queue_is_empty(PriorityQueue* queue) {
