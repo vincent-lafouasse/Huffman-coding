@@ -10,7 +10,8 @@ PriorityQueue* new_queue_from_frequency_map(FrequencyMap* frequency_map) {
   PriorityQueue* queue = new_queue();
   for (int i = 0; i < frequency_map->len; i++) {
     SymbolCount current = frequency_map->map[i];
-    emplace_into_queue(current.symbol, current.count, queue);
+    if (current.count > 0)
+      emplace_into_queue(current.symbol, current.count, queue);
   }
   return queue;
 }
@@ -30,8 +31,10 @@ Node* pop(PriorityQueue* queue) {
     printf("Queue is empty, cannot pop\n");
     exit(1);
   }
+  Node* tail = queue->elements[queue->len - 1];
   (queue->len)--;
-  return queue->elements[queue->len - 1];
+  normalize_queue(queue);
+  return tail;
 }
 
 static void normalize_queue(PriorityQueue* queue) {

@@ -3,6 +3,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "huffman_queue.h"
+
+Node* construct_huffman_tree_from_map(FrequencyMap* map) {
+  PriorityQueue* queue = new_queue_from_frequency_map(map);
+
+  while (queue->len >= 2) {
+    Node* left = pop(queue);
+    Node* right = pop(queue);
+
+    Node* internal = new_node('\0', left->count + right->count);
+    internal->left = left;
+    internal->right = right;
+    left->parent = internal;
+    right->parent = internal;
+    push(queue, internal);
+  }
+  return pop(queue);
+}
+
 Node* new_node(char symbol, int count) {
   Node* new = malloc(sizeof(Node));
   new->symbol = symbol;

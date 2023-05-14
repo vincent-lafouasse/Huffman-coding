@@ -27,7 +27,10 @@ int main(int argc, char* argv[]) {
   print_queue(queue);
 
   // priority queue to binary tree
-  //
+  Node* root = construct_huffman_tree_from_map(frequency_map);
+  print_node(root);
+  print_node(root->left);
+  print_node(root->right);
 
   // encoding
   //
