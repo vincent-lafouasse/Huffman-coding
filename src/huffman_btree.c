@@ -19,7 +19,9 @@ Node* construct_huffman_tree_from_map(FrequencyMap* map) {
     right->parent = internal;
     push(queue, internal);
   }
-  return pop(queue);
+  Node* root = pop(queue);
+  free(queue);
+  return root;
 }
 
 Node* new_node(char symbol, int count) {
@@ -39,4 +41,14 @@ void print_node(Node* node) {
   printf("\tParent %p", (void*)node->parent);
   printf("\t\tLeft %p", (void*)node->left);
   printf("\tRight %p\n", (void*)node->right);
+}
+
+void free_btree(Node* root) {
+  if (root->left != NULL) {
+    free(root->left);
+  }
+  if (root->right != NULL) {
+    free(root->right);
+  }
+  free(root);
 }

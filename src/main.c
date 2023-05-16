@@ -20,21 +20,14 @@ int main(int argc, char* argv[]) {
 
   // create frequency map
   FrequencyMap* frequency_map = frequency_map_from_string(input);
-  // print_frequency_map(frequency_map);
 
-  // frequency map to priority queue
-  PriorityQueue* queue = new_queue_from_frequency_map(frequency_map);
-  print_queue(queue);
-
-  // priority queue to binary tree
+  // construct huffman tree
   Node* root = construct_huffman_tree_from_map(frequency_map);
   print_node(root);
-  print_node(root->left);
-  print_node(root->right);
 
   // encoding
   //
 
-  free(queue);
   free(frequency_map);
+  free_btree(root);
 }
