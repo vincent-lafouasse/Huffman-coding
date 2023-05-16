@@ -43,6 +43,20 @@ void print_node(Node* node) {
   printf("\tRight %p\n", (void*)node->right);
 }
 
+static int max(int a, int b) {
+  return (a >= b) * a + (a < b) * b;
+}
+
+int tree_height(Node* node) {
+  int height = 0;
+
+  if (node == NULL) {
+    return height;
+  }
+
+  return 1 + max(tree_height(node->left), tree_height(node->right));
+}
+
 void free_btree(Node* root) {
   if (root->left != NULL) {
     free(root->left);

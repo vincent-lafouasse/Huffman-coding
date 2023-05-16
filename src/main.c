@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
   // construct huffman tree
   Node* root = construct_huffman_tree_from_map(frequency_map);
   print_node(root);
+  printf("Tree has height %d\n", tree_height(root));
 
   // encoding
   //
